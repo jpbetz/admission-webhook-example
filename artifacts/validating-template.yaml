@@ -1,0 +1,23 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: validating.stable.example.com
+webhooks:
+- name: allow.stable.example.com
+  rules:
+  - apiGroups:
+    - "stable.example.com"
+    apiVersions:
+    - v1
+    operations:
+    - "*"
+    resources:
+    - foos
+    scope: "Namespaced"
+  clientConfig:
+    caBundle: ${CA_BUNDLE}
+    service:
+      name: admission-webhook-service
+      namespace: default
+      path: "/always-allow-delay-5s"
+      port: 9443

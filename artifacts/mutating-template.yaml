@@ -1,0 +1,23 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: mutating.stable.example.com
+webhooks:
+- name: noop.stable.example.com
+  rules:
+  - apiGroups:
+    - "stable.example.com"
+    apiVersions:
+    - v1
+    operations:
+    - "*"
+    resources:
+    - foos
+    scope: "Namespaced"
+  clientConfig:
+    caBundle: ${CA_BUNDLE}
+    service:
+      name: admission-webhook-service
+      namespace: default
+      path: "/add-label"
+      port: 9443

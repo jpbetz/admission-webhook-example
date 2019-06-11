@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: admission-webhook-service
+spec:
+  selector:
+    app: admission-webhook
+  ports:
+  - protocol: TCP
+    port: 9443
+    targetPort: 443

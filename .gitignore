@@ -1,0 +1,3 @@
+artifacts/kubeconfig.yaml
+artifacts/mutating-webhook.yaml
+artifacts/validating-webhook.yaml
